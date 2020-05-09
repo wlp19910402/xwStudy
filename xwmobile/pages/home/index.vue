@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-app-bar
       app
       flat
@@ -12,22 +11,27 @@
     >
       <div
         class="qm-header-img"
-        :style="'background: url('+$store.state.user.head_img_location+') left center/cover no-repeat;'"
+        :style="
+          'background: url(' +
+            $store.state.user.head_img_location +
+            ') left center/cover no-repeat;'
+        "
       ></div>
-      <v-list
-        tile
-        class="qm-header-img-filter"
-      >
+      <v-list tile class="qm-header-img-filter">
         <v-list-item>
           <v-list-item-avatar size="48">
-            <img :src="$store.state.user.head_img_location">
+            <img :src="$store.state.user.head_img_location" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{$store.state.user.user_name}}</v-list-item-title>
+            <v-list-item-title class="white--text">{{
+              $store.state.user.user_name
+            }}</v-list-item-title>
             <div
               class="white--text text-line2-ellipsis caption"
               v-for="item in card.declist"
-            >{{item.text}}</div>
+            >
+              {{ item.text }}
+            </div>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -40,40 +44,35 @@
           mandatory
         >
           <div class="algin-item">
-            <v-item
-              v-for="item,index in goodClassList"
-              :key="item.id"
-            >
-              <div :class="['qm-left-menu-text',' font-weight-light',item.title.length>8?'caption':'body-2',index===1?'active':'']">
+            <v-item v-for="(item, index) in goodClassList" :key="item.id">
+              <div
+                :class="[
+                  'qm-left-menu-text',
+                  ' font-weight-light',
+                  item.title.length > 8 ? 'caption' : 'body-2',
+                  index === 1 ? 'active' : ''
+                ]"
+              >
                 <span>
-                  {{item.title}}
+                  {{ item.title }}
                 </span>
               </div>
             </v-item>
           </div>
         </v-item-group>
 
-        <div
-          class="qm-home-right-content"
-          vertical
-          ref="foodswrapper"
-        >
+        <div class="qm-home-right-content" vertical ref="foodswrapper">
           <div>
-            <v-list
-              two-line
-              class="px-2"
-            >
-              <template v-for="ite,index in storeList.goodList">
+            <v-list two-line class="px-2">
+              <template v-for="(ite, index) in storeList.goodList">
                 <v-list-item class="px-2">
-                  <v-list-item-avatar
-                    tile
-                    size="38px"
-                    class="my-2 mr-2"
-                  >
-                    <img :src="ite.avatar">
+                  <v-list-item-avatar tile size="38px" class="my-2 mr-2">
+                    <img :src="ite.avatar" />
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title class="body-2 d-flex">{{ite.title}}</v-list-item-title>
+                    <v-list-item-title class="body-2 d-flex">{{
+                      ite.title
+                    }}</v-list-item-title>
                     <v-list-item-subtitle
                       class="caption grey--text"
                       v-html="ite.subtitle"
@@ -85,16 +84,13 @@
                   </div>
                 </v-list-item>
                 <div class="ml-12 pl-4 d-flex align-center mr-4 mt-n2 mb-2">
-                  <div class="text-left body-2">{{ite.value}} </div>
+                  <div class="text-left body-2">{{ ite.value }}</div>
                   <v-spacer></v-spacer>
-                  <cart-contral
-                    :goods="ite"
-                    v-on:cart_add="cartAdd"
-                  ></cart-contral>
+                  <cart-contral :goods="ite" @cart_add="cartAdd"></cart-contral>
                 </div>
                 <v-divider
+                  v-if="index != storeList.goodList.length - 1"
                   inset
-                  v-if="index!=storeList.goodList.length-1"
                 ></v-divider>
               </template>
             </v-list>
@@ -110,15 +106,13 @@
 </template>
 
 <script>
-
+import BScroll from '@better-scroll/core'
 import CartContral from '~/components/CartContral'
 import ShopCartBar from '~/components/ShopCartBar'
-import BScroll from '@better-scroll/core'
 export default {
   data: () => ({
     shopCartIsHome: true,
-    card:
-    {
+    card: {
       title: '便利蜂',
       src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
       flex: 12,
@@ -134,81 +128,183 @@ export default {
         {
           id: 2,
           text: '联系电话：188888888888'
-        }, {
+        },
+        {
           id: 3,
-          text: '地址：朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址'
+          text:
+            '地址：朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址朝阳区地址'
         }
       ]
     },
     length: 3,
     window: 0,
-    storeList:
-    {
+    storeList: {
       ID: 'DD222338882',
       storeName: '爱美丽',
       state: '已完成',
       goodList: [
-        { num: '3', value: '28.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述" },
-        { num: '0', value: '198.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-        { num: '0', value: '28.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述" },
-        { num: '0', value: '198.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-        { num: '0', value: '28.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-        { num: '3', value: '28.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述" },
-        { num: '0', value: '198.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg', title: '新鲜草莓', subtitle: "今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-        { num: '0', value: '8.80', avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg', title: '新鲜草莓i', subtitle: "今天新摘的哦，" },
-
+        {
+          num: '3',
+          value: '28.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg',
+          title: '新鲜草莓',
+          subtitle:
+            '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '198.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg',
+          title: '新鲜草莓',
+          subtitle: '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        },
+        {
+          num: '0',
+          value: '28.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg',
+          title: '新鲜草莓',
+          subtitle:
+            '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '198.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg',
+          title: '新鲜草莓',
+          subtitle: '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        },
+        {
+          num: '0',
+          value: '28.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg',
+          title: '新鲜草莓',
+          subtitle:
+            '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        },
+        {
+          num: '3',
+          value: '28.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588334036746&di=aebbfee8278ed29d85161c9bfd98c3d2&imgtype=0&src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F141018%2F3-14101Q61544.jpg',
+          title: '新鲜草莓',
+          subtitle:
+            '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '198.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335939418&di=d1c0b55b464dca09cd103050986f647b&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F08f790529822720e397728e170cb0a46f21fab74.jpg',
+          title: '新鲜草莓',
+          subtitle: '今天新摘的哦，很香甜，美味等你哦。继续描述描述描述描述'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        },
+        {
+          num: '0',
+          value: '8.80',
+          avatar:
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588335980600&di=2445d5efff279fc9bd29b3e4ff8f0be2&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D187315319%2C1716361749%26fm%3D214%26gp%3D0.jpg',
+          title: '新鲜草莓i',
+          subtitle: '今天新摘的哦，'
+        }
       ]
     },
     goodClassList: [
       { id: 1, title: '商品名称', sales: '3', salesValue: false },
-      { id: 2, title: '商品名称商品名称商品名称', sales: '1', salesValue: '5折' },
+      {
+        id: 2,
+        title: '商品名称商品名称商品名称',
+        sales: '1',
+        salesValue: '5折'
+      },
       { id: 3, title: '商品名称商品名称', sales: '1', salesValue: '5折' },
       { id: 4, title: '商品名称商品名称', sales: '1', salesValue: '5折' },
       { id: 5, title: '商品', sales: '1', salesValue: '5折' },
       { id: 6, title: '商品名称', sales: '1', salesValue: '5折' },
       { id: 7, title: '商品名称商品名称', sales: '1', salesValue: '5折' },
       { id: 8, title: '商品名称1', sales: '1', salesValue: '5折' },
-      { id: 9, title: '商品名称商品名称商品名称', sales: '1', salesValue: '5折' },
+      {
+        id: 9,
+        title: '商品名称商品名称商品名称',
+        sales: '1',
+        salesValue: '5折'
+      },
       { id: 10, title: '商品名称', sales: '1', salesValue: '5折' },
       { id: 11, title: '商品名称商品名称', sales: '1', salesValue: '5折' },
       { id: 12, title: '商品名称', sales: '2', salesValue: false }
     ],
-    scrollY: 0,
-
+    scrollY: 0
   }),
-  created () {
-  },
+  created() {},
   computed: {
-    selectGoods () {
-      let goodsArr = [];
+    selectGoods() {
+      let goodsArr = []
       this.storeList.forEach((store) => {
         store.goodList.forEach((good) => {
           if (good.num) {
-            goodsArr.push(good);
+            goodsArr.push(good)
           }
         })
-      });
-      return goodsArr;
-    },
-
+      })
+      return goodsArr
+    }
   },
-  mounted () {
+  mounted() {
     let menuwrapper = document.querySelector('.qm-home-left-menu')
-    let bs = new BScroll(menuwrapper);
+    let bs = new BScroll(menuwrapper)
     let foodwrapper = document.querySelector('.qm-home-right-content')
     let fs = new BScroll(foodwrapper, {
       click: true
-    });
+    })
   },
   methods: {
-    cartAdd (el) {
+    cartAdd(el) {
       this.$nextTick(() => {
-        this.$refs[ 'shopcartbar' ].drop(el)
+        this.$refs['shopcartbar'].drop(el)
       })
     }
   },
@@ -253,7 +349,7 @@ export default {
         position: absolute;
         left: 0;
         top: 0;
-        content: "";
+        content: '';
       }
     }
   }

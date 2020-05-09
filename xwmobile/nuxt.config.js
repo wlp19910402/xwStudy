@@ -6,61 +6,59 @@ export default {
   },
   mode: 'spa',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [
-    '~/assets/css/main.less'
-  ],
+   ** Global CSS
+   */
+  css: ['~/assets/css/main.less'],
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '~/plugins/axios'
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: ['~/plugins/axios'],
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
-    '@nuxtjs/vuetify',
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module',
+    // Doc: https://github.com/nuxt-community/stylelint-module
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/vuetify'
   ],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     '@nuxtjs/axios',
-    [ '@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } } ],
+    ['@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } }]
   ],
-  axios: {
-    proxy: true,
-  },
-  proxy: {
-    '/api': 'http://127.0.0.1:8080/'
-  },
+  axios: { proxy: true },
+  proxy: { '/api': 'http://127.0.0.1:8080/' },
   /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
   vuetify: {
-    customVariables: [ '~/assets/variables.scss' ],
+    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {
@@ -86,21 +84,13 @@ export default {
     }
   },
   /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
-  },
+   ** Build configuration
+   */
   /*
- ** router -middleware
- */
-  router: {
-    middleware: 'auth'
-  },
+   ** You can extend webpack config here
+   */
+  router: { middleware: 'auth' },
+  build: { extend(config, ctx) {} },
   env: {
     baseUrl: process.env.BASE_URL || 'http://127.0.0.1:8080'
   }

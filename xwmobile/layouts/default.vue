@@ -1,14 +1,7 @@
 <template>
   <v-app class="grey lighten-3">
     <nuxt />
-    <v-footer
-      padless
-      :fixed="
-    fixed"
-      app
-      flat
-      elevation="1"
-    >
+    <v-footer padless :fixed="fixed" app flat elevation="1">
       <footer-bar />
     </v-footer>
   </v-app>
@@ -17,7 +10,7 @@
 <script>
 import FooterBar from '~/components/FooterBar.vue'
 export default {
-  data () {
+  data() {
     return {
       clipped: false,
       drawer: false,
@@ -40,7 +33,7 @@ export default {
       title: 'Vuetify.js'
     }
   },
-  components: { FooterBar },
+  components: { FooterBar }
 }
 </script>
 <style>

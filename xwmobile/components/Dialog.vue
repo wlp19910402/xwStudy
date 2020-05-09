@@ -1,8 +1,5 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    max-width="290"
-  >
+  <v-dialog v-model="dialog" max-width="290">
     <v-card>
       <v-card-title class="headline">安全退出</v-card-title>
 
@@ -13,19 +10,11 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn
-          color="green darken-1"
-          text
-          @click="this.$parent.dialog = false"
-        >
+        <v-btn color="green darken-1" text @click="this.$parent.dialog = false">
           否
         </v-btn>
 
-        <v-btn
-          color="green darken-1"
-          text
-          @click="this.$parent.dialog = false"
-        >
+        <v-btn color="green darken-1" text @click="this.$parent.dialog = false">
           是
         </v-btn>
       </v-card-actions>
@@ -34,6 +23,6 @@
 </template>
 <script>
 export default {
-  props: [ 'parent', 'dialog' ]
+  props: ['parent', 'dialog']
 }
 </script>

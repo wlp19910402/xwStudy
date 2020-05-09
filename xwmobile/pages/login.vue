@@ -1,12 +1,6 @@
 <template>
   <v-container fluid>
-    <v-form
-      method="post"
-      enctype="multipart/form-data"
-      ref="form"
-      :lazy-validation="lazy"
-    >
-
+    <v-form method="post" ref="form" :lazy-validation="lazy">
       <v-text-field
         v-model="username"
         single-line
@@ -45,11 +39,7 @@
           class="mt-n2"
         >
         </v-text-field>
-        <img
-          width="80px"
-          height="37px"
-          src="../assets/images/ma.png"
-        />
+        <img width="80px" height="37px" src="../assets/images/ma.png" />
       </div>
       <v-btn
         text
@@ -75,10 +65,11 @@
         outlined
         color="primary"
         to="/reg"
-      > 注册</v-btn>
+      >
+        注册</v-btn
+      >
     </v-form>
   </v-container>
-
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -89,45 +80,51 @@ export default {
     valid: true,
     username: '',
     usernameRules: [
-      v => !!v || '手机号是必须输入的',
-      v => /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(v) || '请输入正确的手机号码',
+      (v) => !!v || '手机号是必须输入的',
+      (v) =>
+        /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(v) ||
+        '请输入正确的手机号码'
     ],
     password: '',
     passwordRules: [
-      v => !!v || '密码是必须输入',
-      v => (v.length >= 6) || '密码必须6个字符以上的',
+      (v) => !!v || '密码是必须输入',
+      (v) => v.length >= 6 || '密码必须6个字符以上的'
     ],
     verificationCode: '',
-    verificationCodeRules: [
-      v => !!v || '邮箱是必须输入的'
-    ],
+    verificationCodeRules: [(v) => !!v || '邮箱是必须输入的'],
     checkbox: false,
-    lazy: true,
+    lazy: true
   }),
   computed: {
-    ...mapState([ 'redirectPath' ])
+    ...mapState(['redirectPath'])
   },
   methods: {
-    async submit_form () {
-      let validate = this.$refs.form.validate();
+    async submit_form() {
+      let validate = this.$refs.form.validate()
       if (validate) {
-        let formdata = new FormData();
-        formdata.append('user_name', this.username);
-        formdata.append('password', this.password);
-        await this.$axios.post(`${ process.env.baseUrl }/admin/login`, formdata).then(res => {
-          console.log(res);
-          if (res.data.err > 0) {
-            alert(res.data.msg);
-          } else {
-            localStorage.token_value = res.data.token_value;
-            let userLogin = { user_name: res.data.user_name, nick_name: res.data.nick_name }
-            this.$store.dispatch('setUser', userLogin);
-            this.$router.push(this.redirectPath);
-            // this.$router.replace(this.redirectPath)
-          }
-        }).catch(err => {
-          console.log(err);
-        })
+        let formdata = new FormData()
+        formdata.append('user_name', this.username)
+        formdata.append('password', this.password)
+        await this.$axios
+          .post(`${process.env.baseUrl}/admin/login`, formdata)
+          .then((res) => {
+            console.log(res)
+            if (res.data.err > 0) {
+              alert(res.data.msg)
+            } else {
+              localStorage.token_value = res.data.token_value
+              let userLogin = {
+                user_name: res.data.user_name,
+                nick_name: res.data.nick_name
+              }
+              this.$store.dispatch('setUser', userLogin)
+              this.$router.push(this.redirectPath)
+              // this.$router.replace(this.redirectPath)
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     }
   }

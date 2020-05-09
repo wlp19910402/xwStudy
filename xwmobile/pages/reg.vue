@@ -3,11 +3,9 @@
     <v-form
       action="http://localhost:8081/api/login"
       method="post"
-      enctype="multipart/form-data"
       ref="form"
       :lazy-validation="lazy"
     >
-
       <v-text-field
         v-model="username"
         single-line
@@ -95,13 +93,10 @@
       >
         注册
       </v-btn>
-
     </v-form>
   </v-container>
-
 </template>
 <script>
-import axios from '@nuxtjs/axios'
 export default {
   layout: 'base',
   data: () => ({
@@ -109,51 +104,52 @@ export default {
     valid: true,
     username: '',
     usernameRules: [
-      v => !!v || '手机号是必须输入的',
-      v => /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(v) || '请输入正确的手机号码',
+      (v) => !!v || '手机号是必须输入的',
+      (v) =>
+        /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(v) ||
+        '请输入正确的手机号码'
     ],
     nickname: '',
-    nicknameRules: [
-      v => !!v || '昵称是必须输入的',
-    ],
+    nicknameRules: [(v) => !!v || '昵称是必须输入的'],
     password: '',
     passwordRules: [
-      v => !!v || '密码是必须输入',
-      v => (v.length >= 6) || '密码必须6个字符以上的',
+      (v) => !!v || '密码是必须输入',
+      (v) => v.length >= 6 || '密码必须6个字符以上的'
     ],
     repassword: '',
     repasswordRules: [
-      v => !!v || '密码是必须输入',
-      v => (v.length >= 6) || '密码必须6个字符以上的',
+      (v) => !!v || '密码是必须输入',
+      (v) => v.length >= 6 || '密码必须6个字符以上的'
       // v => v == this.password || '两次密码必须是一样的'
     ],
     verificationCode: '',
-    verificationCodeRules: [
-      v => !!v || '验证码是必须输入的'
-    ],
+    verificationCodeRules: [(v) => !!v || '验证码是必须输入的'],
     checkbox: false,
-    lazy: true,
+    lazy: true
   }),
 
   methods: {
-    async submit_form () {
-      let validate = this.$refs.form.validate();
+    async submit_form() {
+      let validate = this.$refs.form.validate()
       if (validate) {
-        let formdata = new FormData();
-        formdata.append('user_name', this.username);
-        formdata.append('password', this.password);
-        formdata.append('nick_name', this.nickname);
-        await this.$axios.post(`${ process.env.baseUrl }/admin/reg`, formdata).then(res => {
-          console.log(res);
-          if (res.data.err > 0) {
-            alert(res.data.msg);
-          } else {
-            alert(res.data.msg + "，去登录吧");
-            this.$router.push('/login');
-          }
-        }).catch(err => {
-          console.log(err);
-        })
+        let formdata = new FormData()
+        formdata.append('user_name', this.username)
+        formdata.append('password', this.password)
+        formdata.append('nick_name', this.nickname)
+        await this.$axios
+          .post(`${process.env.baseUrl}/admin/reg`, formdata)
+          .then((res) => {
+            console.log(res)
+            if (res.data.err > 0) {
+              alert(res.data.msg)
+            } else {
+              alert(res.data.msg + '，去登录吧')
+              this.$router.push('/login')
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     }
   }

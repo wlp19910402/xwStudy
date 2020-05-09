@@ -1,11 +1,9 @@
 <template>
   <v-app drak>
     <v-container>
-      <div class="icon"><img
-          class="logo"
-          alt="Logo"
-          src="../assets/images/logo.png"
-        /></div>
+      <div class="icon">
+        <img class="logo" alt="Logo" src="../assets/images/logo.png" />
+      </div>
       <nuxt />
     </v-container>
   </v-app>
@@ -26,4 +24,3 @@
   top: 0;
 }
 </style>
-

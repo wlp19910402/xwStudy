@@ -12,10 +12,7 @@
         @enter="duigou"
         @after-enter="duigouafter"
       >
-        <div
-          v-show="gou"
-          class="duigou-box"
-        >
+        <div v-show="gou" class="duigou-box">
           <div class="duigou"></div>
         </div>
       </transition>
@@ -25,43 +22,35 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       gou: true
     }
   },
   methods: {
-    duigouFun () {
-      this.gou = true;
-      // let el = document.querySelector('.duigou');
-      // let elp = document.querySelector('.duigou-box');
-      // elp.style.webkitTransform = "translate3d(60px,-130px,0)";
-      // elp.style.transform = "translate3d(50px,-130px,0)";
-
-      // el.style.webkitTransform = "translate3d(96px,0,0)";
-      // el.style.transform = "translate3d(96px,0,0)";
-      return;
+    duigouFun() {
+      this.gou = true
+      return
     },
-    duigoubefore () {
-      let el = document.querySelector('.duigou');
-      let elp = document.querySelector('.duigou-box');
-      elp.style.webkitTransform = "translate3d(60px,-130px,0)";
-      elp.style.transform = "translate3d(50px,-130px,0)";
-
-      el.style.webkitTransform = "translate3d(96px,0,0)";
-      el.style.transform = "translate3d(96px,0,0)";
+    duigoubefore() {
+      const el = document.querySelector('.duigou')
+      const elp = document.querySelector('.duigou-box')
+      elp.style.webkitTransform = 'translate3d(60px,-130px,0)'
+      elp.style.transform = 'translate3d(50px,-130px,0)'
+      el.style.webkitTransform = 'translate3d(96px,0,0)'
+      el.style.transform = 'translate3d(96px,0,0)'
     },
-    duigou () {
-      let el = document.querySelector('.duigou');
-      let elp = document.querySelector('.duigou-box')
-      elp.style.webkitTransform = "translate3d(0,-230px,0)";
-      elp.style.transform = "translate3d(0,-230px,0)";
+    duigou() {
+      const el = document.querySelector('.duigou')
+      const elp = document.querySelector('.duigou-box')
+      elp.style.webkitTransform = 'translate3d(0,-230px,0)'
+      elp.style.transform = 'translate3d(0,-230px,0)'
 
-      el.style.webkitTransform = "translate3d(220,0,0)";
-      el.style.transform = "translate3d(220,0, 0)";
+      el.style.webkitTransform = 'translate3d(220,0,0)'
+      el.style.transform = 'translate3d(220,0, 0)'
     },
-    duigouafter () {
-      let el = document.querySelector('.duigou');
+    duigouafter() {
+      let el = document.querySelector('.duigou')
       // el.style.transform = "translate3d(236px, 10px, 0)"
     }
   }

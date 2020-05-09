@@ -1,4 +1,3 @@
-
 import avatars from '~/assets/images/avatars.jpg'
 export default {
   state: {
@@ -11,27 +10,22 @@ export default {
     shopcartBarIsHome: false
   },
   mutations: {
-    setUser (state, userLogin) {
-      state.user.user_name = userLogin.user_name;
-      state.user.nick_name = userLogin.nick_name;
+    setUser(state, userLogin) {
+      state.user.user_name = userLogin.user_name
+      state.user.nick_name = userLogin.nick_name
     },
-    setRedirectPath (state, path) {
-      state.redirectPath = path;
+    setRedirectPath(state, path) {
+      state.redirectPath = path
     }
   },
   actions: {
-    setUser ({ commit }, userLogin) {
-      commit('setUser', userLogin);
+    setUser({ commit }, userLogin) {
+      commit('setUser', userLogin)
     },
-    setRedirectPath ({ commit }, path) {
-      commit('setRedirectPath', path);
+    setRedirectPath({ commit }, path) {
+      commit('setRedirectPath', path)
     }
   },
-  getters: {
-
-  },
-  modules: {
-
-  }
+  getters: {},
+  modules: {}
 }
-

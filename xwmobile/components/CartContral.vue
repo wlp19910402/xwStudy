@@ -2,27 +2,27 @@
   <div class="text-right float-right d-flex">
     <transition name="slide-fade">
       <v-btn
+        v-show="goods.num > 0"
         fab
         depressed
         x-small
         color="primary"
         width="18px"
         height="18px"
-        v-show="goods.num>0"
         @click.prevent="decreaseCart()"
       >
         <v-icon dark>mdi-minus</v-icon>
       </v-btn>
     </transition>
     <v-btn
+      v-show="goods.num > 0"
       text
       x-small
       height="18px"
       class="mx-0 px-0 body-2 red--text text--darken-1"
-      v-show="goods.num>0"
       disabled
     >
-      {{goods.num}}
+      {{ goods.num }}
     </v-btn>
     <v-btn
       fab
@@ -36,7 +36,6 @@
       <v-icon dark>mdi-plus</v-icon>
     </v-btn>
   </div>
-
 </template>
 <script>
 export default {
@@ -46,19 +45,19 @@ export default {
     }
   },
   methods: {
-    addCart () {
+    addCart() {
       if (!event._constructed) {
-        return;
+        return
       }
-      this.goods.num++;
+      this.goods.num++
       this.$emit('cart_add', event.target)
     },
-    decreaseCart () {
+    decreaseCart() {
       if (!event._constructed) {
-        return;
+        return
       }
       if (this.goods.num) {
-        this.goods.num--;
+        this.goods.num--
       }
     }
   }
