@@ -78,6 +78,7 @@ import collectIcon from '~/assets/images/menu/collect.png'
 
 import Dialog from '~/components/Dialog'
 export default {
+  name: 'my',
   data: () => ({
     items: [
       { avatar: passwordIcon, title: '密码修改', link: '/home' },
@@ -90,11 +91,7 @@ export default {
   }),
   methods: {
     clearStore() {
-      localStorage.clear()
-      let userLogin = { user_name: '', nick_name: '' }
-      this.$store.dispatch('setUser', userLogin)
-      this.$store.state.redirectPath = '/home'
-      this.dialog = false
+      this.$store.commit('cleanAuth')
       this.$router.push('/login')
     }
   },

@@ -1,5 +1,5 @@
 {
-  "name": "ceshi",
+  "name": "xwmobile",
   "version": "1.0.0",
   "description": "My terrific Nuxt.js project",
   "author": "王莉萍",
@@ -11,6 +11,9 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
+  },
+  "jest": {
+    "testRegex": "/test/.*.test.jsx?$"
   },
   "lint-staged": {
     "*.{js,vue}": "yarn lint",
@@ -24,6 +27,7 @@
   "dependencies": {
     "@better-scroll/core": "^2.0.0-beta.6",
     "@nuxtjs/axios": "^5.10.3",
+    "babel-polyfill": "^6.26.0",
     "less-loader": "^6.1.0",
     "nuxt": "^2.0.0"
   },

@@ -94,6 +94,7 @@ import BScroll from '@better-scroll/core'
 import CartContral from '~/components/CartContral'
 import ShopCartBar from '~/components/ShopCartBar'
 export default {
+  name: 'cart',
   data: () => ({
     shopCartIsHome: false,
     snackbar: true,

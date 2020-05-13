@@ -86,6 +86,7 @@
 <script>
 import BScroll from '@better-scroll/core'
 export default {
+  name: 'order',
   data() {
     return {
       orderMenuList: [

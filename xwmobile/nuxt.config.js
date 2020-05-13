@@ -33,7 +33,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios'],
+  plugins: ['~/plugins/axios', '~/plugins/routerguards', '~/plugins/poly'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -52,7 +52,7 @@ export default {
     ['@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } }]
   ],
   axios: { proxy: true },
-  proxy: { '/api': 'http://127.0.0.1:8080/' },
+  proxy: { '/api': 'http://127.0.0.1:8080' },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -89,9 +89,10 @@ export default {
   /*
    ** You can extend webpack config here
    */
-  router: { middleware: 'auth' },
+  router: { middleware: 'auth2' },
   build: { extend(config, ctx) {} },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://127.0.0.1:8080'
+    baseUrl: process.env.BASE_URL || 'http://127.0.0.1:8080',
+    jest: true
   }
 }

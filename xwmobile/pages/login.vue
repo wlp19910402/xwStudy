@@ -112,12 +112,13 @@ export default {
             if (res.data.err > 0) {
               alert(res.data.msg)
             } else {
-              localStorage.token_value = res.data.token_value
+              localStorage.token = res.data.token_value
               let userLogin = {
                 user_name: res.data.user_name,
                 nick_name: res.data.nick_name
               }
-              this.$store.dispatch('setUser', userLogin)
+              let token = res.data.token_value
+              this.$store.dispatch('setAuth', { userLogin, token })
               this.$router.push(this.redirectPath)
               // this.$router.replace(this.redirectPath)
             }

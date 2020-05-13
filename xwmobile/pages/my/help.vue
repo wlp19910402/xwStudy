@@ -35,6 +35,7 @@
 <script>
 import HeaderBar from '~/components/HeaderBar'
 export default {
+  name: 'help',
   data() {
     return {
       helpList: [

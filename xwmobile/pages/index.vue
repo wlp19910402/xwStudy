@@ -1,3 +1,10 @@
 <template>
-  <div>9999</div>
+  <div></div>
 </template>
+<script>
+export default {
+  created() {
+    this.$router.replace('/home')
+  }
+}
+</script>

@@ -110,6 +110,7 @@ import BScroll from '@better-scroll/core'
 import CartContral from '~/components/CartContral'
 import ShopCartBar from '~/components/ShopCartBar'
 export default {
+  name: 'home',
   data: () => ({
     shopCartIsHome: true,
     card: {
