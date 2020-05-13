@@ -1,8 +1,8 @@
-export default ({ app, store }) => {
+export default ({ app }) => {
   app.router.beforeEach(async (to, from, next) => {
-    // console.log(process.client)
+    console.log(1111111111)
     console.log('to:', to.path)
     console.log('from:', from.path)
-    next()
+    await next()
   })
 }

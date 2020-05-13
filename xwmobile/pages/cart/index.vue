@@ -15,7 +15,12 @@
     <div class="qm-bscroll-screen-box qm-bscroll-screen-box-py-cart">
       <div class="qm-bscroll-screen">
         <div class="py-3">
-          <v-card flat v-for="(item, index) in orderList" class="mx-3 mb-3">
+          <v-card
+            v-for="(item, index) in orderList"
+            :key="index"
+            flat
+            class="mx-3 mb-3"
+          >
             <v-card-title class="pb-0 subtitle-2">{{
               item.storeName
             }}</v-card-title>

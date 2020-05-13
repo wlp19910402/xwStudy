@@ -1,4 +1,4 @@
 export default function guards(to, from, next) {
-  console.log('to.name', to.name, 'from.name', from.name)
+  console.log('to.name', to.path, 'from.name', from.path)
   next()
 }

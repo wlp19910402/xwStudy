@@ -21,6 +21,7 @@
     <div class="ball-container">
       <transition
         v-for="(ball, index) in balls"
+        :key="index"
         name="drop"
         @before-enter="beforeDrop"
         @enter="dropping"
