@@ -9,7 +9,7 @@ describe('页面跳转触发全局前置守卫', () => {
     await routerguards({
       app: {
         router: {
-          beforeEach: (beforeEachParams) => { }
+          beforeEach: (beforeEachParams())=>{}
         }
       }
     })

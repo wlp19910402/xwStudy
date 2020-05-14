@@ -4,5 +4,5 @@ export default ({ app }) => {
     console.log('from:', from.path)
     await next()
   })
-  console.log(app.router.beforeEach)
+  console.log(pp.router.beforeEach)
 }
