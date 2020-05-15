@@ -90,8 +90,14 @@ export default {
   /*
    ** You can extend webpack config here
    */
-  router: { middleware: 'auth' },
-  build: { extend(config, ctx) {} },
+  router: { middleware: 'auth', base: '/xw/dist/' },
+  build: {
+    extend(config, { isClient, isDev }) {
+      if (!isDev) {
+        config.output.publicPath = 'http://127.0.0.1:8000/xw/dist/_nuxt/'
+      }
+    }
+  },
   env: {
     baseUrl: process.env.BASE_URL || 'http://39.105.50.203:8081',
     jest: true

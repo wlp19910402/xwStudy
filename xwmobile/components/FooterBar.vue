@@ -41,3 +41,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.v-item-group.v-bottom-navigation {
+  align-items: center;
+}
+.v-item-group.v-bottom-navigation .v-btn {
+  height: inherit !important;
+}
+</style>

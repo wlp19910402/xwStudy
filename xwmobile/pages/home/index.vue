@@ -22,7 +22,7 @@
           <v-list-item-avatar size="48">
             <img :src="$store.state.user.head_img_location" />
           </v-list-item-avatar>
-          <v-list-item-content>
+          <v-list-item-content class="py-0">
             <v-list-item-title class="white--text">{{
               $store.state.user.user_name
             }}</v-list-item-title>
@@ -384,11 +384,10 @@ export default {
 .qm-header-img-filter {
   background-color: rgba(0, 0, 0, 0.6) !important;
   width: 100%;
-  position: absolute;
+  position: absolute !important;
   height: 100%;
   left: 0;
   top: 0;
-  padding: 0;
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 </style>
