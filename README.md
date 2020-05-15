@@ -48,3 +48,6 @@ $ git commit -m "第几次提交，干嘛的啊"
 
 # 推送到远程库中
 $ git push origin master
+
+
+root@39.105.50.203:/home/wlp/nodeproject

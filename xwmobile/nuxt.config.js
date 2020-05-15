@@ -2,7 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    port: 3000
   },
   mode: 'spa',
   /*
@@ -33,7 +34,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios', '~/plugins/routerguards', '~/plugins/poly'],
+  plugins: ['~/plugins/axios', '~/plugins/poly'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -52,7 +53,7 @@ export default {
     ['@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } }]
   ],
   axios: { proxy: true },
-  proxy: { '/api': 'http://127.0.0.1:8080' },
+  proxy: { '/api': 'http://39.105.50.203:8081' },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -89,10 +90,10 @@ export default {
   /*
    ** You can extend webpack config here
    */
-  router: { middleware: 'auth2' },
+  router: { middleware: 'auth' },
   build: { extend(config, ctx) {} },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://127.0.0.1:8080',
+    baseUrl: process.env.BASE_URL || 'http://39.105.50.203:8081',
     jest: true
   }
 }

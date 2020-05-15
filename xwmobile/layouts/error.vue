@@ -33,6 +33,11 @@ export default {
     return {
       title
     }
+  },
+  created() {
+    console.log(this.error.statusCode)
+    console.log('错误信息:', this.error.message)
+    console.log(this.error)
   }
 }
 </script>

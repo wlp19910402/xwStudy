@@ -5,11 +5,13 @@ describe('页面跳转触发全局前置守卫', () => {
     const to = { name: 'login', path: '/login' }
     const from = { name: 'home', path: '/home' }
     const next = jest.fn()
-    const beforeEachParams = ((to, from, next) => { console.log(to, from, next) })
+    const beforeEachParams = (to, from, next) => {
+      console.log(to, from, next)
+    }
     await routerguards({
       app: {
         router: {
-          beforeEach: (beforeEachParams) => { }
+          beforeEach: (beforeEachParams) => {}
         }
       }
     })
