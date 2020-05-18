@@ -21,7 +21,7 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [ { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } ]
   },
   /*
    ** Customize the progress-bar color
@@ -30,11 +30,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/css/main.less'],
+  css: [ '~/assets/css/main.less' ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios', '~/plugins/poly'],
+  plugins: [ '~/plugins/axios', '~/plugins/poly' ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -50,16 +50,16 @@ export default {
    */
   modules: [
     '@nuxtjs/axios',
-    ['@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } }]
+    [ '@nuxtjs/proxy', { pathRewrite: { '^/api': '/api/v1' } } ]
   ],
   axios: { proxy: true },
-  proxy: { '/api': 'http://39.105.50.203:8081' },
+  proxy: { '/api': 'http://www.home-d.cn/xw/server/' },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: [ '~/assets/variables.scss' ],
     theme: {
       dark: false,
       themes: {
@@ -89,17 +89,19 @@ export default {
    */
   /*
    ** You can extend webpack config here
+   ** base 参数是在url访问的路由后面ip:prod/base_name_path/路由
    */
   router: { middleware: 'auth', base: '/xw/dist/' },
   build: {
-    extend(config, { isClient, isDev }) {
+    extend (config, { isClient, isDev }) {
       if (!isDev) {
-        config.output.publicPath = 'http://127.0.0.1:8000/xw/dist/_nuxt/'
+        //生产模式，将具体的访问地址后面加上/_nuxt/，以防找不到访问的路径
+        config.output.publicPath = 'http://www.home-d.cn/xw/dist/_nuxt/'
       }
     }
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://39.105.50.203:8081',
+    baseUrl: process.env.BASE_URL || 'http://www.home-d.cn/xw/server/',
     jest: true
   }
 }

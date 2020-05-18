@@ -19,18 +19,18 @@ server.context.db = co(conn);
 let obj = body({ uploadDir: 'upload' });
 server.use(obj);
 
-server.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', '*')
-  ctx.set('Access-Control-Allow-Credentials', 'true')
-  ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Control-Allow-Headers,Content-Length,Accept,Authorization,X-Requested-With")
-  ctx.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS")
-  if (ctx.request.method == "OPTIONS") {
-    ctx.status = 200
-    return;
-  } else {
-    await next();
-  }
-})
+// server.use(async (ctx, next) => {
+//   ctx.set('Access-Control-Allow-Origin', '*')
+//   ctx.set('Access-Control-Allow-Credentials', 'true')
+//   ctx.set("Access-Control-Allow-Headers", "Content-Type,Access-Control-Allow-Headers,Content-Length,Accept,Authorization,X-Requested-With")
+//   ctx.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS")
+//   if (ctx.request.method == "OPTIONS") {
+//     ctx.status = 200
+//     return;
+//   } else {
+//     await next();
+//   }
+// })
 
 server.use(router);
 
